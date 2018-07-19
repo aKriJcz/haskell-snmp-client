@@ -12,7 +12,8 @@ install:
   - cabal install --only-dependencies --enable-tests
 
 after_failure:
-  - find .cabal-sandbox/logs -name "*.log" -exec echo Reading log: {} \; -exec cat {} \;
+    #- find .cabal-sandbox/logs -name "*.log" -exec echo Reading log: {} \; -exec cat {} \;
+  - if [[ -f .cabal-sandbox/logs/build.log ]]; then cat .cabal-sandbox/logs/build.log; fi
 
 # Caching so the next build will be fast too.
 cache:
