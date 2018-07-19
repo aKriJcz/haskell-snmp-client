@@ -4,8 +4,8 @@ synopsis:            SNMP client implementation.
 description:         Please see README.md
 license:             BSD3
 license-file:        LICENSE
-author:              Anton Kondrachkov, Alexey Smirnov
-maintainer:          Anton Kondrachkov <simplex91@gmail.com>, Alexey Smirnov <chemistmail@gmail.com>
+author:              Anton Kondrachkov, Alexey Smirnov, Jiří Kratochvíl
+maintainer:          Anton Kondrachkov <simplex91@gmail.com>, Alexey Smirnov <chemistmail@gmail.com>, Jiří Kratochvíl <kratochvil.jiri.cz@gmail.com>
 category:            Network
 build-type:          Simple
 -- extra-source-files:
