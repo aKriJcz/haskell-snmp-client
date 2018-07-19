@@ -10,6 +10,7 @@ git:
 
 install:
   - cabal sandbox init
+  - cabal sandbox add-source ./snmp
   - cabal install --only-dependencies --enable-tests
 
 # Caching so the next build will be fast too.
