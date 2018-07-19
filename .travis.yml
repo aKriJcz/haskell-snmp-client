@@ -11,7 +11,10 @@ install:
   - cabal sandbox add-source ./snmp
   - cabal install --only-dependencies --enable-tests
 
+after_failure:
+  - find .cabal-sandbox/logs -name "*.log" -exec echo Reading log: {} \; -exec cat {} \;
+
 # Caching so the next build will be fast too.
 cache:
   directories:
-  - $HOME/.cabal-sandbox/lib
+  - .cabal-sandbox/lib
