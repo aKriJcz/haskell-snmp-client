@@ -42,6 +42,7 @@ library
                      , socket
                      , pipes
                      , stm
+                     , text
   ghc-options:
     -Wall
     -Werror

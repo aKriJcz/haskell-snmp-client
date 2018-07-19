@@ -23,6 +23,8 @@ import           Control.Concurrent
 import           Control.Concurrent.STM
 import           Data.IORef
 import           System.Random
+import           Control.Exception.Base
+import           Data.Text
 
 import           Network.Protocol.Snmp         (Packet, RequestId,
                                                 getErrorStatus, getRid,
@@ -95,7 +97,7 @@ usmClient host port to rc usm@Usm{..} = do
         return sock
 
 instance SnmpManager UsmClient where
-    managerAddress = return . Hostname . encodeUtf8 . show . address
+    managerAddress = return . Hostname . encodeUtf8 . pack . show . address
     managerVersion _ = return Version3
     managerTimeout = return . timeout
     managerRetries = return . retries

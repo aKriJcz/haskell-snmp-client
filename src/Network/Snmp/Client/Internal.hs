@@ -38,6 +38,8 @@ import           Data.IORef                             (IORef,
 import           Network.Info
 import           System.Timeout
 
+import           Control.Exception.Base
+
 import           Network.Snmp.Client.Exception
 import           Network.Snmp.Client.Internal.Community
 import           Network.Snmp.Client.Internal.Socket

@@ -16,6 +16,8 @@ module Network.Snmp.Client.Simple.Community where
 
 import           BasicPrelude
 import qualified Prelude
+import           Data.Text
+import           Control.Exception.Base
 
 import           Network.Protocol.Snmp
 import           Network.Snmp.Client.Internal
@@ -45,7 +47,7 @@ data CommunityClient = CommunityClient
   }
 
 instance SnmpManager CommunityClient where
-    managerAddress = return . Hostname . encodeUtf8 . show . address
+    managerAddress = return . Hostname . encodeUtf8 . pack . show . address
     managerVersion = return . getVersion . packet
     managerTimeout = return . timeout
     managerRetries = return . retries

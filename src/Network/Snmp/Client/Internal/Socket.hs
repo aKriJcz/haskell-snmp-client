@@ -21,15 +21,17 @@ import qualified Data.ByteString.Lazy       as BL
 import           Pipes                      (await, yield)
 import qualified Pipes
 import qualified System.Socket              as Sock
+import qualified System.Socket.Protocol.UDP as UDP
+import qualified System.Socket.Type.Datagram as SockD
 import qualified System.Socket.Family.Inet6 as Inet6
 
 import           Network.Protocol.Snmp      (Packet)
 
 import           Network.Snmp.Client.Types
 
-type UAddrInfo = Sock.AddressInfo Inet6.Inet6 Sock.Datagram Sock.UDP
-type UdpSocket = Sock.Socket Inet6.Inet6 Sock.Datagram Sock.UDP
-type Address = Inet6.SocketAddressInet6
+type UAddrInfo = Sock.AddressInfo Inet6.Inet6 SockD.Datagram UDP.UDP
+type UdpSocket = Sock.Socket Inet6.Inet6 SockD.Datagram UDP.UDP
+type Address = Inet6.SocketAddress Inet6.Inet6
 
 -- | Resolve ip address by hostname and port.
 -- Works like getHostByName.
@@ -71,7 +73,7 @@ bindPort :: UdpSocket -> Port -> IO ()
 bindPort s (Port p) =
     Sock.setSocketOption s (Sock.ReuseAddress True) >> Sock.bind s addr
   where
-    addr = Inet6.SocketAddressInet6 Inet6.any (Inet6.Port p) mempty 0
+    addr = Inet6.SocketAddressInet6 Inet6.inet6Any (fromIntegral p) 0 0
 
 --------------------------------------------------------------------------------
 -- | Message type. Used to communicate with Snmp agent.
@@ -106,7 +108,7 @@ receiveMessage s size =
 --
 -- address = localhost (Port 8080)
 localhost :: Port -> Address
-localhost (Port p) = Inet6.SocketAddressInet6 Inet6.any (Inet6.Port p) mempty 0
+localhost (Port p) = Inet6.SocketAddressInet6 Inet6.inet6Any (fromIntegral p) 0 0
 
 --------------------------------------------------------------------------------
 
