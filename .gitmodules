@@ -1,6 +1,6 @@
 [submodule "master"]
 	path = master
-	url = https://github.com/chemist/snmp.git
+	url = https://github.com/aKriJcz/snmp.git
 [submodule "snmp"]
 	path = snmp
-	url = https://github.com/chemist/snmp.git
+	url = https://github.com/aKriJcz/snmp.git
